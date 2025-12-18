@@ -6,4 +6,5 @@ export interface CommentShowDto{
   firstname:string;
   message:string;
   creationDate:Date;
+  avatarIndex?:number;
 }

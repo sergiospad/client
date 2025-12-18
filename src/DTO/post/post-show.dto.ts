@@ -10,5 +10,5 @@ export interface PostShowDto{
   images:number[];
   likedUsers:number[];
   img?:any[];
-  comments?:CommentShowDto[];
+  fullComments?:CommentShowDto[];
 }
