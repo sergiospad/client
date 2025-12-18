@@ -1,6 +1,7 @@
 
 export interface CommentShowDto{
   id:number;
+  commentatorId:number;
   username:string;
   lastname:string;
   firstname:string;
