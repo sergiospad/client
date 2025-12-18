@@ -62,7 +62,8 @@ export class LoginComponent implements OnInit{
     this.userService.getCurrentUser()
       .subscribe(user=>this.tokenService.saveUser(user))
     this.notificationService.showSnackBar("Successfully logged in");
-    this.router.navigate(['/main']);
-    window.location.reload();
+    this.router.navigate(['/main'])
+      .then(()=>window.location.reload());
+
   }
 }

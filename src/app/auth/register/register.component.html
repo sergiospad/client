@@ -1,1 +1,60 @@
-<p>register.component works!</p>
+<div class="app-register">
+  <h2>Register</h2>
+  <form [formGroup]="registerForm">
+    <div>
+      <div class = 'question'>
+        Already have an account? <a routerLink="/login">SignIn</a>
+      </div>
+      <div class="justify-content-center">
+        <div></div>
+        <mat-form-field appearance="outline">
+          <mat-label>Login</mat-label>
+          <input matInput formControlName="username">
+        </mat-form-field>
+      </div>
+      <div class="justify-content-center">
+        <div></div>
+        <mat-form-field appearance="outline">
+          <mat-label>Firstname</mat-label>
+          <input matInput formControlName="firstname">
+        </mat-form-field>
+      </div>
+      <div class="justify-content-center">
+        <div></div>
+        <mat-form-field appearance="outline">
+          <mat-label>Lastname</mat-label>
+          <input matInput formControlName="lastname">
+        </mat-form-field>
+      </div>
+      <div class="justify-content-center">
+        <div></div>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email">
+        </mat-form-field>
+      </div>
+      <div class="justify-content-center">
+        <div></div>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput formControlName="password" type="password">
+        </mat-form-field>
+      </div>
+      <div class="justify-content-center">
+        <div></div>
+        <mat-form-field appearance="outline">
+          <mat-label>ConfirmPassword</mat-label>
+          <input matInput formControlName="confirmPassword" type="password">
+        </mat-form-field>
+      </div>
+      <div id="controls" class="row">
+        <button (click)="register()"
+                mat-flat-button color="primary"
+                [disabled]="registerForm.invalid"
+                style="width: 10%">
+          Register
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

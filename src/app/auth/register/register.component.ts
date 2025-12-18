@@ -1,12 +1,21 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {AuthService} from '../../../service/auth.service';
 import {NotificationService} from '../../../service/notification-service';
-import {Router} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
+import {MatFormField, MatInput, MatLabel} from '@angular/material/input';
+import {MatButton} from '@angular/material/button';
 
 @Component({
   selector: 'app-register',
-  imports: [],
+  imports: [
+    ReactiveFormsModule,
+    RouterLink,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    MatButton
+  ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
@@ -46,8 +55,8 @@ export class RegisterComponent implements OnInit {
         next: (data) => {
           console.log(data);
 
-          this.router.navigate(['/']);
-          this.notificationService.showSnackBar("Successfully registered");
+          this.router.navigate(['/']).then(r =>
+            this.notificationService.showSnackBar("Successfully registered"));
           window.location.reload();
         },
         error: (error) => {
