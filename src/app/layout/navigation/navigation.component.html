@@ -1,0 +1,49 @@
+<mat-toolbar color="primary">
+
+  <span routerLink="/main"
+        style="cursor: pointer; margin-left: 20px; font-weight: bold;"
+        class="logo">
+    Telescope
+  </span>
+
+
+  <span class="spacer"></span>
+
+  @if (user) {
+    <div class="user-info">
+      <h3 class="user-name">{{ user?.firstname }} {{ user?.lastname }}</h3>
+    </div>
+  }
+
+  <div class="toolbar-actions">
+    @if (user) {
+      <button matTooltip="Login"
+              routerLink="/login"
+              mat-icon-button
+              class="action-button"
+              aria-label="Login">
+        <mat-icon>login</mat-icon>
+      </button>
+    } @else {
+      <button [matMenuTriggerFor]="menu"
+              matTooltip="Profile"
+              mat-icon-button
+              class="action-button profile-button"
+              aria-label="Profile menu">
+        <mat-icon color="accent">account_box</mat-icon>
+      </button>
+    }
+  </div>
+
+  <mat-menu #menu="matMenu" class="profile-menu">
+    <button mat-menu-item routerLink="/profile">
+      <mat-icon>person</mat-icon>
+      <span>Profile</span>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      <span>Logout</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>

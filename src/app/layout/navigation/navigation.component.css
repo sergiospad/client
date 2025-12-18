@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Birthstone&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Unna:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+.spacer{
+  flex: 1 1 auto;
+}
+
+.logo {
+  font-size: 3rem;
+  letter-spacing: 0.5px;
+  transition: opacity 0.2s;
+  font-family: "Birthstone", cursive;
+  font-style: normal;
+}
+
+.logo:hover {
+  opacity: 0.8;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-right: 16px;
+}
+
+.user-name {
+  margin: 0;
+  font-size: 1.5rem;
+  color: white;
+  opacity: 0.9;
+  font-family: "Unna", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.action-button {
+  transition: transform 0.2s,
+  background-color 0.2s;
+  color: white;
+}
+
+.action-button:hover {
+  transform: scale(1.1);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.profile-button {
+  margin-right: 8px;
+  color: white;
+}
+
+.profile-menu {
+  min-width: 180px;
+}
+
+.profile-menu .mat-icon {
+  margin-right: 12px;
+  color: #666;
+}
+
+@media (max-width: 600px) {
+  .user-name {
+    font-size: 0.9rem;
+    display: none;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+    margin-left: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .logo {
+    font-size: 1rem;
+  }
+
+  .toolbar-actions {
+    gap: 4px;
+  }
+}
+
+:host ::ng-deep .mat-toolbar.mat-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
