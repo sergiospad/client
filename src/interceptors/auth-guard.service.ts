@@ -21,6 +21,7 @@ export class AuthGuardService implements CanActivate {
       return true;
     }
     this.router.navigate(['/login'], {queryParams:{returnUrl:state.url}});
+    window.sessionStorage.clear();
     this.notificationService.showSnackBar("Token Expired")
     return false;
   }

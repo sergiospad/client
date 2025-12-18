@@ -25,12 +25,12 @@ export class TokenStorageService{
     return JSON.parse(<string>sessionStorage.getItem(RESPONSE_KEY));
   }
 
-  public saveName(user:UserShowNameDto){
+  public saveUser(user:UserShowNameDto){
     window.sessionStorage.removeItem(USER_KEY);
     window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
   }
 
-  public getName():UserShowNameDto{
+  public getUser():UserShowNameDto{
     return JSON.parse(<string>window.sessionStorage.getItem(USER_KEY));
   }
 
