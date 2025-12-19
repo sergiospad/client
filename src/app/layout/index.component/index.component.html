@@ -3,28 +3,7 @@
     @for (post of fullPosts; track post.id) {
       <mat-card class="post-card" appearance="outlined">
 
-        <mat-card-header class="post-header">
-          <div class="post-user-info">
-
-            <div class="avatar-container">
-              <img [src]="getAvatar(post.author)"
-                   class="user-avatar"
-                   alt="User avatar">
-            </div>
-
-
-            <div class="post-user-details">
-              <mat-card-title class="post-title">{{ post.title }}</mat-card-title>
-              <mat-card-subtitle class="post-subtitle">
-        <span class="location">
-          <mat-icon class="location-icon">location_on</mat-icon>
-          {{ post.location }}
-        </span>
-                <span class="username">{{ post.authorFirstname }} {{ post.authorLastname }}</span>
-              </mat-card-subtitle>
-            </div>
-          </div>
-        </mat-card-header>
+       <app-post-header [post]="post"></app-post-header>
 
         <app-slider [images]="post.img"></app-slider>
         @if (post.caption) {

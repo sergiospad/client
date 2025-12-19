@@ -17,6 +17,7 @@ import {MatDivider} from '@angular/material/list';
 import {CarouselModule, OwlOptions} from 'ngx-owl-carousel-o';
 import {SliderService} from '../../../service/slider.service';
 import {SliderComponent} from '../../elements/slider/slider.component';
+import {PostHeaderComponent} from '../../elements/post-header/post-header.component';
 
 @Component({
   selector: 'app-index',
@@ -38,6 +39,7 @@ import {SliderComponent} from '../../elements/slider/slider.component';
     CarouselModule,
     MatCardImage,
     SliderComponent,
+    PostHeaderComponent,
   ],
   templateUrl: './index.component.html',
   styleUrl: './index.component.css',
