@@ -1,0 +1,31 @@
+<div class="comment-item" [class.last-comment]="last">
+
+  <div class="comment-avatar">
+    <img [src]="this.imageUploadService.getAvatar(comment.commentatorId)"
+         alt="Avatar"
+         class="avatar-img">
+  </div>
+
+  <div class="comment-content">
+
+    <div class="comment-header">
+              <span class="comment-author">
+                {{ comment.firstname }} {{ comment.lastname }}
+              </span>
+      <span class="comment-date">
+                {{ comment.creationDate | dateFormat }}
+              </span>
+    </div>
+
+    <div class="comment-body">
+      {{ comment.message }}
+    </div>
+    @if (allowedToDelete){
+      <mat-icon>cancel</mat-icon>
+    }
+  </div>
+</div>
+
+@if (!last) {
+  <mat-divider class="comment-divider"></mat-divider>
+}
