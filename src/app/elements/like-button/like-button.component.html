@@ -1,0 +1,12 @@
+<mat-card-actions class="post-actions">
+  <button mat-icon-button
+          class="like-btn"
+          [class.liked]="liked"
+          [class.not-liked]="!liked"
+          (click)="handleClick()">
+    <div>
+      <mat-icon>favorite</mat-icon>
+      <span class="like-count">{{ post.likedUsers.length || 0 }}</span>
+    </div>
+  </button>
+</mat-card-actions>
