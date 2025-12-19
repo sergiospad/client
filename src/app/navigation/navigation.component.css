@@ -49,9 +49,37 @@
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-.profile-button {
+.profile-avatar-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  padding: 0;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-right: 8px;
-  color: white;
+}
+
+.comment-avatar {
+  flex-shrink: 0;
+  margin-left: 10px;
+}
+
+.profile-avatar-button:hover {
+  border-color: rgba(255, 255, 255, 0.6);
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.profile-avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .profile-menu {
@@ -89,3 +117,5 @@
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
+
+
