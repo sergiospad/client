@@ -5,10 +5,22 @@
 
         <mat-card-header class="post-header">
           <div class="post-user-info">
+
+            <div class="avatar-container">
+              <img [src]="getAvatar(post.author)"
+                   class="user-avatar"
+                   alt="User avatar">
+            </div>
+
+
             <div class="post-user-details">
               <mat-card-title class="post-title">{{ post.title }}</mat-card-title>
               <mat-card-subtitle class="post-subtitle">
-                {{ post.location }}
+        <span class="location">
+          <mat-icon class="location-icon">location_on</mat-icon>
+          {{ post.location }}
+        </span>
+                <span class="username">{{post.authorFirstname}} {{post.authorLastname}}</span>
               </mat-card-subtitle>
             </div>
           </div>
@@ -45,11 +57,33 @@
             <div class="comments-list">
               @for (comment of post.fullComments; track comment.id; let last = $last) {
                 <div class="comment-item" [class.last-comment]="last">
-                  <img [src]="getAvatar(comment.commentatorId)">
-                  <span class="comment-username">{{ comment.firstname }} {{comment.lastname}}</span>
-                  <span class="comment-text">{{ comment.message }}</span>
-                  <span>{{comment.creationDate | dateFormat}}</span>
+
+                  <div class="comment-avatar">
+                    <img [src]="getAvatar(comment.commentatorId)"
+                         alt="Avatar"
+                         class="avatar-img">
+                  </div>
+
+                  <div class="comment-content">
+
+                    <div class="comment-header">
+              <span class="comment-author">
+                {{ comment.firstname }} {{ comment.lastname }}
+              </span>
+                      <span class="comment-date">
+                {{ comment.creationDate | dateFormat }}
+              </span>
+                    </div>
+
+                    <div class="comment-body">
+                      {{ comment.message }}
+                    </div>
+                  </div>
                 </div>
+
+                @if (!last) {
+                  <mat-divider class="comment-divider"></mat-divider>
+                }
               }
             </div>
           }

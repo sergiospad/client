@@ -7,19 +7,19 @@ import {NotificationService} from '../../service/notification-service';
 import { concatMap, forkJoin, from, map, Observable, toArray} from 'rxjs';
 import {UserService} from '../../service/user.service';
 import {CommentCreateDto} from '../../DTO/comment/comment-create.dto';
+import {ImageUploadService} from '../../service/image-upload.service';
 
 @Directive()
 export abstract class FeedComponent implements OnInit{
 
-  private avatarCache: Map<number, string> = new Map();
   postsId:number[]|undefined;
   fullPosts: PostShowDto[]|undefined;
   user!:UserShowNameDto;
-  avatars = new Array<any>;
   protected readonly postService = inject(PostService);
   protected readonly userService = inject(UserService);
   protected readonly commentService = inject(CommentService);
   protected readonly notificationService = inject(NotificationService);
+  protected readonly imageUploadService = inject(ImageUploadService);
 
   protected abstract getPosts():Observable<number[]>
 
@@ -32,9 +32,12 @@ export abstract class FeedComponent implements OnInit{
       .subscribe({next:data=>{
         this.postsId = data;
         from(this.postsId)
-          .pipe(concatMap((id)=>this.postService.getPostById(id)), toArray())
+          .pipe(concatMap((id)=>
+            this.postService.getPostById(id)), toArray())
           .subscribe(data=> {
             this.fullPosts = data;
+            this.fullPosts.forEach(post=>
+            this.imageUploadService.loadAndCacheAvatar(post.author))
             this.getImagesToPosts();
             this.getFullComments();
           })
@@ -52,7 +55,7 @@ export abstract class FeedComponent implements OnInit{
       next: (results) =>
         results.forEach(({post, img}) => {
           post.img ??= new Array<any>();
-          this.createImageFromBlob(img, post);
+          this.imageUploadService.createImageFromBlob(img, post);
         })
 
     })
@@ -69,7 +72,7 @@ export abstract class FeedComponent implements OnInit{
           .forEach(({post, comments}) => {
             post.fullComments = comments;
             post.fullComments.forEach(comment=>
-              this.loadAndCacheAvatar(comment.commentatorId))
+              this.imageUploadService.loadAndCacheAvatar(comment.commentatorId));
           })
       })
   }
@@ -84,40 +87,12 @@ export abstract class FeedComponent implements OnInit{
       error: ()=>"Haven't uploaded comment"});
   }
 
-
-  async createImageFromBlob(image: Blob, post:PostShowDto) {
-      const base64 = await this.convertBlobToDataUrl(image)
-      post.img?.push(base64);
-  }
-
-  private convertBlobToDataUrl(blob: Blob): Promise<string> {
-    return new Promise((resolve) => {
-      const reader = new FileReader();
-
-      reader.onloadend = () => {
-        resolve(reader.result as string);
-      };
-
-      reader.readAsDataURL(blob);
-    });
-  }
-
-  loadAndCacheAvatar(commentatorId:number){
-    if (this.avatarCache.has(commentatorId)) {
-      return;
-    }
-    this.userService.getAvatarByUserId(commentatorId).subscribe(data => {
-      this.convertBlobToDataUrl(data).then(r => {
-        this.avatarCache.set(commentatorId, r);
-      })
-    })
-  }
-
   likePost(post:PostShowDto){
     this.userService.likePost(post.id).subscribe({next:data=>post.likedUsers = data})
   }
 
   getAvatar(userId: number): string|null {
-    return this.avatarCache.get(userId)||null;
+    return this.imageUploadService.getAvatar(userId)
   }
+
 }

@@ -41,7 +41,7 @@ export class UserService{
     return this.http.post(this.userAPI.build("image"), uploadData)
   }
 
-  getAvatarByUserId(userId:number):Observable<any>{
+  getAvatarByUserId(userId:number):Observable<Blob>{
     return this.http.get(this.userAPI.build("image", String(userId)),{
       responseType: 'blob'
     });

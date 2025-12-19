@@ -5,7 +5,9 @@ export interface PostShowDto{
   title:string;
   caption:string;
   location:string;
-  author:string;
+  author:number;
+  authorFirstname:string;
+  authorLastname:string;
   createdDate:Date;
   images:number[];
   likedUsers:number[];

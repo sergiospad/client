@@ -13,6 +13,7 @@ import {MatIcon} from '@angular/material/icon';
 import {MatFormField, MatHint, MatInput, MatLabel} from '@angular/material/input';
 import {MatIconButton} from '@angular/material/button';
 import {DateFormatter} from '../../../util/date-formatter';
+import {MatDivider} from '@angular/material/list';
 
 @Component({
   selector: 'app-index',
@@ -30,7 +31,8 @@ import {DateFormatter} from '../../../util/date-formatter';
     MatHint,
     MatInput,
     MatIconButton,
-    DateFormatter
+    DateFormatter,
+    MatDivider
   ],
   templateUrl: './index.component.html',
   styleUrl: './index.component.css',
