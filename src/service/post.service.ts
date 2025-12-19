@@ -20,17 +20,23 @@ export class PostService{
     return this.http.get<number[]>(this.postAPI.build("all"));
   }
 
-  getPostImage(imageId:number):Observable<any>{
-    return this.http.get(this.postAPI.build("image", String(imageId)));
-  }
-
-  uploadImage(postId:number):Observable<number>{
-    return this.http.post<number>(this.postAPI.build("image", String(postId)), {
+  getPostImage(imageId:number):Observable<Blob>{
+    return this.http.get(this.postAPI.build("image", String(imageId)),{
       responseType: 'blob'
     });
   }
 
+  uploadImage(postId:number, file:File):Observable<number>{
+    const uploadData = new FormData();
+    uploadData.append('file', file);
+    return this.http.post<number>(this.postAPI.build("image", String(postId)), uploadData);
+  }
+
   deletePost(postId:number):Observable<any>{
     return this.http.delete(this.postAPI.build("delete", String(postId)))
+  }
+
+  getPostById(postId:number):Observable<PostShowDto>{
+    return this.http.get<PostShowDto>(this.postAPI.build(String(postId)));
   }
 }

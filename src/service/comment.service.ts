@@ -12,8 +12,8 @@ export class CommentService{
   private readonly commentAPI = new EndpointBuilder("comment");
   private readonly http= inject(HttpClient);
 
-  createComment(comment:CommentCreateDto){
-    return this.http.post(this.commentAPI.build("create"), comment);
+  createComment(comment:CommentCreateDto):Observable<CommentShowDto>{
+    return this.http.post<CommentShowDto>(this.commentAPI.build("create"), comment);
   }
 
   getAllCommentsOfPost(postId:number):Observable<CommentShowDto[]>{
@@ -23,7 +23,5 @@ export class CommentService{
   deleteComment(commentId:number):Observable<any>{
     return this.http.delete(this.commentAPI.build("delete", String(commentId)));
   }
-
-
 
 }

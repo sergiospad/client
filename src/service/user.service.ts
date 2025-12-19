@@ -29,13 +29,21 @@ export class UserService{
     return this.http.get<number[]>(this.userAPI.build("like", String(postId)))
   }
 
-  getAvatar():Observable<any>{
-    return this.http.get(this.userAPI.build("image"));
+  getAvatar():Observable<Blob>{
+    return this.http.get(this.userAPI.build("image"),{
+      responseType: 'blob'
+    });
   }
 
   postAvatar(file:File):Observable<any>{
     const uploadData = new FormData();
     uploadData.append('file', file);
     return this.http.post(this.userAPI.build("image"), uploadData)
+  }
+
+  getAvatarByUserId(userId:number):Observable<any>{
+    return this.http.get(this.userAPI.build("image", String(userId)),{
+      responseType: 'blob'
+    });
   }
 }

@@ -8,5 +8,4 @@ export interface UserProfileDto{
   lastname:string;
   bio:string;
   posts: number[];
-  fullPosts?: PostShowDto[]
 }
