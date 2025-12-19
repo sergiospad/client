@@ -1,0 +1,31 @@
+@if (images) {
+  <div class="post-images-section">
+    <owl-carousel-o [options]="customOptions" #owlCar class="post-carousel">
+      @for (img of images; track $index) {
+        <ng-template carouselSlide>
+          <div class="carousel-slide">
+            <img mat-card-image
+                 class="post-image"
+                 [src]="img">
+          </div>
+        </ng-template>
+      }
+    </owl-carousel-o>
+    @if (images.length > 1) {
+      <div class="carousel-navigation">
+        <button mat-icon-button
+                class="carousel-nav-btn prev-btn"
+                (click)="owlCar.prev()"
+                aria-label="Previous image">
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+        <button mat-icon-button
+                class="carousel-nav-btn next-btn"
+                (click)="owlCar.next()"
+                aria-label="Next image">
+          <mat-icon>chevron_right</mat-icon>
+        </button>
+      </div>
+    }
+  </div>
+}

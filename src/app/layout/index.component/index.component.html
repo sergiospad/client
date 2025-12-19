@@ -20,19 +20,13 @@
           <mat-icon class="location-icon">location_on</mat-icon>
           {{ post.location }}
         </span>
-                <span class="username">{{post.authorFirstname}} {{post.authorLastname}}</span>
+                <span class="username">{{ post.authorFirstname }} {{ post.authorLastname }}</span>
               </mat-card-subtitle>
             </div>
           </div>
         </mat-card-header>
 
-        @if (post.img&&post.img[0]&&post.img[0]!='data:text/xml;base64,') {
-          <img mat-card-image
-               class="post-image"
-               [src]="post.img[0]"
-               [alt]="post.title">
-        }
-
+        <app-slider [images]="post.img"></app-slider>
         @if (post.caption) {
           <mat-card-content class="post-content">
             <p class="post-caption">{{ post.caption }}</p>
