@@ -1,0 +1,37 @@
+<div class="dialog-container">
+  <h2 class="dialog-title">Edit User Profile</h2>
+  <form [formGroup]="profileEditForm" class="form-fields">
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>First name</mat-label>
+      <input matInput formControlName="firstname">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Last name</mat-label>
+      <input matInput formControlName="lastname">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Bio</mat-label>
+      <input matInput formControlName="bio">
+    </mat-form-field>
+
+    <div class="dialog-actions">
+      <button (click)="closeDialog()"
+              class="action-button cancel-button"
+              mat-button
+              mat-dialog-close
+              disableRipple>Cancel</button>
+    </div>
+
+    <button color ="primary"
+            class="action-button submit-button"
+            [disabled]="profileEditForm.invalid"
+            (click)="submit()"
+            mat-raised-button
+            disableRipple>
+      Update
+    </button>
+  </form>
+</div>

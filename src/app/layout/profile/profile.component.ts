@@ -9,6 +9,7 @@ import {MatIcon} from '@angular/material/icon';
 import {MatDivider} from '@angular/material/list';
 import {RouterOutlet} from '@angular/router';
 import {AddPostComponent} from '../../elements/dialog-window/add-post/add-post.component';
+import {EditProfileComponent} from '../../elements/dialog-window/edit-profile/edit-profile.component';
 
 @Component({
   selector: 'app-profile',
@@ -55,8 +56,7 @@ export class ProfileComponent implements OnInit{
     dialogUserEditConfig.data = {
       user: this.user
     };
-    //TODO EditUserComponent
-    // this.dialog.open(EditUserComponent, dialogUserEditConfig);
+    this.dialog.open(EditProfileComponent, dialogUserEditConfig);
   }
 
   onUpload(): void {

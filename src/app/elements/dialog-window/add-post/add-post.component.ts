@@ -54,18 +54,24 @@ export class AddPostComponent implements OnInit{
 
   submit() {
     this.postService.createPost(this.formPost())
-      .subscribe({next: (data)=> {
+      .subscribe({
+        next: (data) => {
           const post = data;
-          if(this.filesToUpload){
-            const imgs =this.filesToUpload.map(file=>this.postService.uploadImage(post.id, file))
+          if (this.filesToUpload) {
+            const imgs = this.filesToUpload.map(file => this.postService.uploadImage(post.id, file))
             forkJoin(imgs).subscribe({
-              next:data => post.images = data,
-              error: ()=> this.notificationService.showSnackBar("Error!"),
-              complete: ()=>window.location.reload()
-          })
+              next: data => post.images = data,
+              error: () => this.notificationService.showSnackBar("Error!"),
+              complete: () => {
+                this.dialogRef.close();
+                window.location.reload();
+              }
+            })
           }
+
           this.notificationService.showSnackBar("Post created.")
-        }})
+        }
+      })
   }
 
   formPost():PostCreateDto{
