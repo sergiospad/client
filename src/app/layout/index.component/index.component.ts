@@ -2,44 +2,34 @@ import { Component } from '@angular/core';
 import {FeedComponent} from '../feed.component';
 import { Observable } from 'rxjs';
 import {
-  MatCard, MatCardActions,
+  MatCard,
   MatCardContent,
-  MatCardHeader,
-  MatCardImage,
-  MatCardSubtitle,
-  MatCardTitle
 } from '@angular/material/card';
 import {MatIcon} from '@angular/material/icon';
 import {MatFormField, MatHint, MatInput, MatLabel} from '@angular/material/input';
-import {MatIconButton} from '@angular/material/button';
-import {DateFormatter} from '../../../util/date-formatter';
-import {MatDivider} from '@angular/material/list';
-import {CarouselModule, OwlOptions} from 'ngx-owl-carousel-o';
-import {SliderService} from '../../../service/slider.service';
+import {CarouselModule} from 'ngx-owl-carousel-o';
 import {SliderComponent} from '../../elements/slider/slider.component';
 import {PostHeaderComponent} from '../../elements/post-header/post-header.component';
+import {LikeButtonComponent} from '../../elements/like-button/like-button.component';
+import {CommentBoxComponent} from '../../elements/comment-box/comment-box.component';
+import {CommentsSectionComponent} from '../../elements/comments-section.component/comments-section.component';
 
 @Component({
   selector: 'app-index',
   imports: [
     MatCard,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardSubtitle,
     MatCardContent,
-    MatCardActions,
     MatIcon,
     MatFormField,
     MatLabel,
     MatHint,
     MatInput,
-    MatIconButton,
-    DateFormatter,
-    MatDivider,
     CarouselModule,
-    MatCardImage,
     SliderComponent,
     PostHeaderComponent,
+    LikeButtonComponent,
+    CommentBoxComponent,
+    CommentsSectionComponent,
   ],
   templateUrl: './index.component.html',
   styleUrl: './index.component.css',
@@ -48,10 +38,4 @@ export class IndexComponent extends FeedComponent {
     protected override getPosts(): Observable<number[]> {
         return this.postService.getAllPosts();
     }
-
-    returnOptions():OwlOptions{
-      return SliderService.customOptions;
-    }
-
-  protected readonly DateFormatter = DateFormatter;
 }

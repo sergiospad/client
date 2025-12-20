@@ -12,64 +12,18 @@
           </mat-card-content>
         }
 
-        <mat-card-actions class="post-actions">
-          <button mat-icon-button
-                  class="like-btn"
-                  [class.liked]="post.likedUsers.includes(user.id)"
-                  [class.not-liked]="!post.likedUsers.includes(user.id)"
-                  (click)="likePost(post)">
-            <div>
-              <mat-icon>favorite</mat-icon>
-              <span class="like-count">{{ post.likedUsers.length || 0 }}</span>
-            </div>
-          </button>
-        </mat-card-actions>
+        <app-like-button [liked] = "post.likedUsers.includes(user.id)"
+                         [post]="post"
+                         (postClicked)="likePost($event)">
+        </app-like-button>
 
-        <div class="comments-section">
-          @if (post.fullComments && post.fullComments.length > 0) {
-            <div class="comments-list">
-              @for (comment of post.fullComments; track comment.id; let last = $last) {
-                <div class="comment-item" [class.last-comment]="last">
+        <app-comments-section [comments]="post.fullComments"
+                              [allowedToDeleteComment]="false"
+                              [post]="post"
+                              (sendComment)="postComment($event.message, $event.post)"
+        >
 
-                  <div class="comment-avatar">
-                    <img [src]="getAvatar(comment.commentatorId)"
-                         alt="Avatar"
-                         class="avatar-img">
-                  </div>
-
-                  <div class="comment-content">
-
-                    <div class="comment-header">
-              <span class="comment-author">
-                {{ comment.firstname }} {{ comment.lastname }}
-              </span>
-                      <span class="comment-date">
-                {{ comment.creationDate | dateFormat }}
-              </span>
-                    </div>
-
-                    <div class="comment-body">
-                      {{ comment.message }}
-                    </div>
-                  </div>
-                </div>
-
-                @if (!last) {
-                  <mat-divider class="comment-divider"></mat-divider>
-                }
-              }
-            </div>
-          }
-
-          <mat-form-field class="comment-field" appearance="outline">
-            <mat-label>Add a comment...</mat-label>
-            <input matInput
-                   #commentInput
-                   placeholder="Write a comment"
-                   (keyup.enter)="postComment(commentInput.value, post)">
-            <mat-hint align="end">{{ commentInput.value.length }}/128</mat-hint>
-          </mat-form-field>
-        </div>
+        </app-comments-section>
 
       </mat-card>
     }

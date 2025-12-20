@@ -1,0 +1,20 @@
+<div class="comments-section">
+  @if (comments && comments.length > 0) {
+    <div class="comments-list">
+      @for (comment of comments; track comment.id; let last = $last) {
+        <app-comment-box [comment]="comment"
+                         [allowedToDelete] = "allowedToDeleteComment">
+        </app-comment-box>
+      }
+    </div>
+  }
+
+  <mat-form-field class="comment-field" appearance="outline">
+    <mat-label>Add a comment...</mat-label>
+    <input matInput
+           #commentInput
+           placeholder="Write a comment"
+           (keyup.enter)="handleEnterPress(commentInput.value, post)">
+    <mat-hint align="end">{{ commentInput.value.length }}/128</mat-hint>
+  </mat-form-field>
+</div>

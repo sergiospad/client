@@ -44,6 +44,7 @@ export class NavigationComponent implements OnInit{
 
   logout(){
     this.tokenService.logout();
+    this.user = undefined;
     this.router.navigate(['/login'])
   }
 
