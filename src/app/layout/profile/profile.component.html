@@ -53,7 +53,7 @@
           <mat-icon class="info-icon">person</mat-icon>
           <div class="info-content">
             <div class="info-label">Username</div>
-            <div class="info-value">{{ user?.username }}</div>
+            <div class="info-value">{{ user.username }}</div>
           </div>
         </div>
 
@@ -61,16 +61,16 @@
           <mat-icon class="info-icon">badge</mat-icon>
           <div class="info-content">
             <div class="info-label">Full Name</div>
-            <div class="info-value">{{ user?.firstname }} {{ user?.lastname }}</div>
+            <div class="info-value">{{ user.firstname }} {{ user.lastname }}</div>
           </div>
         </div>
 
-        @if (user?.bio) {
+        @if (user.bio) {
           <div class="info-card bio-card">
             <mat-icon class="info-icon">description</mat-icon>
             <div class="info-content">
               <div class="info-label">Bio</div>
-              <div class="info-value bio-text">{{ user?.bio }}</div>
+              <div class="info-value bio-text">{{ user.bio }}</div>
             </div>
           </div>
         }

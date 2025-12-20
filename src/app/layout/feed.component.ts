@@ -4,10 +4,11 @@ import {UserShowNameDto} from '../../DTO/user/user-show-name.dto';
 import {PostService} from '../../service/post.service';
 import {CommentService} from '../../service/comment.service';
 import {NotificationService} from '../../service/notification-service';
-import { concatMap, forkJoin, from, map, Observable, toArray} from 'rxjs';
+import {concatMap, filter, forkJoin, from, map, Observable, toArray} from 'rxjs';
 import {UserService} from '../../service/user.service';
 import {CommentCreateDto} from '../../DTO/comment/comment-create.dto';
 import {ImageUploadService} from '../../service/image-upload.service';
+import {CommentShowDto} from '../../DTO/comment/comment-show.dto';
 
 @Directive()
 export abstract class FeedComponent implements OnInit{
@@ -93,6 +94,23 @@ export abstract class FeedComponent implements OnInit{
 
   getAvatar(userId: number): string|null {
     return this.imageUploadService.getAvatar(userId)
+  }
+
+  deletePost(postId:number){
+
+    const indexToDel = this.postsId?.indexOf(postId)!;
+    this.fullPosts?.splice(indexToDel, 1);
+    this.postService.deletePost(postId)
+      .subscribe(()=>this.notificationService.showSnackBar("Post deleted"));
+  }
+
+  deleteComment(comment:CommentShowDto){
+    const post = this.fullPosts!.filter(post=>post.id == comment.postId)[0];
+    console.log(post)
+    const commentPost = post.fullComments!.indexOf(comment);
+    post.fullComments!.splice(commentPost, 1);
+    this.commentService.deleteComment(comment.id)
+      .subscribe(()=> this.notificationService.showSnackBar("Comment deleted."))
   }
 
 }

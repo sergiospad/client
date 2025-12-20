@@ -4,5 +4,5 @@ export interface UserProfileDto{
   email:string;
   firstname:string;
   lastname:string;
-  bio:string;
+  bio?:string;
 }

@@ -20,6 +20,10 @@ export class PostService{
     return this.http.get<number[]>(this.postAPI.build("all"));
   }
 
+  getUserPosts():Observable<number[]>{
+    return this.http.get<number[]>(this.postAPI.build("user"));
+  }
+
   getPostImage(imageId:number):Observable<Blob>{
     return this.http.get(this.postAPI.build("image", String(imageId)),{
       responseType: 'blob'

@@ -62,4 +62,50 @@
     color: #999;
     font-weight: 500;
   }
+  .post-date {
+    font-size: 0.75rem;
+    color: #999;
+    opacity: 0.8;
+  }
+
+  .author-date-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .post-actions-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 10;
+  }
+
+  .delete-btn {
+    width: 28px !important;
+    height: 28px !important;
+    min-width: 28px !important;
+    min-height: 28px !important;
+    padding: 0 !important;
+    color: crimson !important;
+    opacity: 0.7;
+    transition: all 0.2s ease;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+    &:hover {
+      opacity: 1;
+      transform: scale(1.1);
+      background: white;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  .delete-btn .mat-icon {
+    font-size: 16px !important;
+    width: 16px !important;
+    height: 16px !important;
+  }
 }

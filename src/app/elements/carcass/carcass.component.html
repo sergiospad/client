@@ -3,7 +3,10 @@
     @for (post of posts; track post.id) {
       <mat-card class="post-card" appearance="outlined">
 
-        <app-post-header [post]="post"></app-post-header>
+        <app-post-header [post]="post"
+                          [allowedToDelete] = allowToDelete
+                         (deletePost)="this.deletePost.emit($event);">
+        </app-post-header>
 
         <app-slider [images]="post.img"></app-slider>
         @if (post.caption) {
@@ -14,14 +17,14 @@
 
         <app-like-button [liked] = "post.likedUsers.includes(user.id)"
                          [post]="post"
-                         (postClicked)="handleClick(post)">
+                         (postClicked)="this.postLiked.emit(post);">
         </app-like-button>
 
         <app-comments-section [comments]="post.fullComments"
-                              [allowedToDeleteComment]="false"
+                              [allowedToDeleteComment]="allowToDelete"
                               [post]="post"
-                              (sendComment)="handleEnterPress($event.message, $event.post)">
-
+                              (sendComment)="handleEnterPress($event.message, $event.post)"
+                              (deleteComment)=this.deleteComment.emit($event);>
         </app-comments-section>
 
       </mat-card>

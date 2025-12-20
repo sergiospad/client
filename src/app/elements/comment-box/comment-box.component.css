@@ -28,7 +28,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 4px;
+  margin-bottom: 0;
+}
+
+.comment-header-date {
+  margin-bottom: 10px;
 }
 
 .comment-author {
@@ -55,4 +59,12 @@
 .comment-divider {
   margin: 4px 0 4px 44px; /* Выравнивание с учетом аватарки */
   border-top-color: #f0f0f0;
+}
+
+.delete-comment {
+  position: absolute;
+  right: 10px;
+  top: -14px;
+  transform: scale(0.4);
+  width: 40px !important;
 }

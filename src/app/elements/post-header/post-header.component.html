@@ -1,6 +1,16 @@
 <mat-card-header class="post-header">
   <div class="post-user-info">
 
+    @if (allowedToDelete){
+      <div class="post-actions-btn">
+        <button mat-icon-button
+                class="delete-btn"
+                (click)="this.deletePost.emit(post.id);"
+                matTooltip="Delete post">
+          <mat-icon>clear</mat-icon>
+        </button>
+      </div>
+    }
     <div class="avatar-container">
       <img [src]="imageUploadService.getAvatar(post.author)"
            class="user-avatar"
@@ -14,7 +24,10 @@
           <mat-icon class="location-icon">location_on</mat-icon>
           {{ post.location }}
         </span>
-        <span class="username">{{ post.authorFirstname }} {{ post.authorLastname }}</span>
+        <div class="author-date-row">
+          <span class="username">{{ post.authorFirstname }} {{ post.authorLastname }}</span>
+          <span class="post-date">{{ post.createdDate | dateFormat }}</span>
+        </div>
       </mat-card-subtitle>
     </div>
   </div>

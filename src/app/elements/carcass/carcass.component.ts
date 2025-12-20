@@ -7,6 +7,7 @@ import {MatCard, MatCardContent} from '@angular/material/card';
 import {MatIcon} from '@angular/material/icon';
 import {PostHeaderComponent} from '../post-header/post-header.component';
 import {SliderComponent} from '../slider/slider.component';
+import {CommentShowDto} from '../../../DTO/comment/comment-show.dto';
 
 @Component({
   selector: 'app-carcass',
@@ -27,11 +28,9 @@ export class CarcassComponent {
   @Input() user:UserShowNameDto|undefined
   @Input() allowToDelete!:boolean;
 
-  @Output() postLiked = new EventEmitter<PostShowDto>();
-
-  handleClick(post:PostShowDto): void {
-    this.postLiked.emit(post);
-  }
+  @Output() postLiked = new EventEmitter<PostShowDto>;
+  @Output() deletePost = new EventEmitter<number>;
+  @Output() deleteComment = new EventEmitter<CommentShowDto>;
 
   @Output() sendComment = new EventEmitter<{ message:string, post:PostShowDto }>
 
