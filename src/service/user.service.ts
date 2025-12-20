@@ -35,10 +35,10 @@ export class UserService{
     });
   }
 
-  postAvatar(file:File):Observable<any>{
+  postAvatar(file:Blob):Observable<any>{
     const uploadData = new FormData();
     uploadData.append('file', file);
-    return this.http.post(this.userAPI.build("image"), uploadData)
+    return this.http.put(this.userAPI.build("image"), uploadData)
   }
 
   getAvatarByUserId(userId:number):Observable<Blob>{

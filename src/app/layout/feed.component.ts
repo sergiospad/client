@@ -42,7 +42,7 @@ export abstract class FeedComponent implements OnInit{
             this.getFullComments();
           })
         },
-        error: err => console.log("Didn't get posts")
+        error: err => this.notificationService.showSnackBar(("Didn't get posts"))
       });
   }
 
@@ -84,7 +84,7 @@ export abstract class FeedComponent implements OnInit{
       .subscribe({next:newComment=> {
           post.fullComments?.push(newComment);
         },
-      error: ()=>"Haven't uploaded comment"});
+      error: ()=>this.notificationService.showSnackBar("Haven't uploaded comment")});
   }
 
   likePost(post:PostShowDto){

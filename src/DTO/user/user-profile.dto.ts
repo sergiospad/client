@@ -1,5 +1,3 @@
-import {PostShowDto} from '../post/post-show.dto';
-
 export interface UserProfileDto{
   id:number;
   username:string;
@@ -7,5 +5,4 @@ export interface UserProfileDto{
   firstname:string;
   lastname:string;
   bio:string;
-  posts: number[];
 }

@@ -1,39 +1,7 @@
-@if (fullPosts && user) {
-  <div class="posts-container">
-    @for (post of fullPosts; track post.id) {
-      <mat-card class="post-card" appearance="outlined">
+<app-carcass [posts]="fullPosts"
+             [user]="user"
+             [allowToDelete] = false
+             (postLiked)="likePost($event)"
+             (sendComment)="postComment($event.message, $event.post)">
+</app-carcass>
 
-       <app-post-header [post]="post"></app-post-header>
-
-        <app-slider [images]="post.img"></app-slider>
-        @if (post.caption) {
-          <mat-card-content class="post-content">
-            <p class="post-caption">{{ post.caption }}</p>
-          </mat-card-content>
-        }
-
-        <app-like-button [liked] = "post.likedUsers.includes(user.id)"
-                         [post]="post"
-                         (postClicked)="likePost($event)">
-        </app-like-button>
-
-        <app-comments-section [comments]="post.fullComments"
-                              [allowedToDeleteComment]="false"
-                              [post]="post"
-                              (sendComment)="postComment($event.message, $event.post)"
-        >
-
-        </app-comments-section>
-
-      </mat-card>
-    }
-
-    @empty {
-      <div class="empty-state">
-        <mat-icon class="empty-icon">photo_library</mat-icon>
-        <h3>No posts yet</h3>
-        <p>Be the first to share something!</p>
-      </div>
-    }
-  </div>
-}

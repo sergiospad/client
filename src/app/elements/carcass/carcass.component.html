@@ -1,6 +1,6 @@
-@if (fullPosts && user) {
+@if (posts && user) {
   <div class="posts-container">
-    @for (post of fullPosts; track post.id) {
+    @for (post of posts; track post.id) {
       <mat-card class="post-card" appearance="outlined">
 
         <app-post-header [post]="post"></app-post-header>

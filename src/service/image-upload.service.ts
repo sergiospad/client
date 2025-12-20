@@ -25,13 +25,17 @@ export class ImageUploadService{
     });
   }
 
-  public loadAndCacheAvatar(commentatorId:number){
-    if (this.avatarCache.has(commentatorId)) {
+  public loadAndCacheAvatar(userId:number){
+    if (this.avatarCache.has(userId)) {
       return;
     }
-   this.userService.getAvatarByUserId(commentatorId).subscribe(data => {
+   this.updateAndCacheAvatar(userId);
+  }
+
+  public updateAndCacheAvatar(userId:number){
+    this.userService.getAvatarByUserId(userId).subscribe(data => {
       this.convertBlobToDataUrl(data).then(r => {
-        this.avatarCache.set(commentatorId, r);
+        this.avatarCache.set(userId, r);
       })
     })
   }

@@ -1,0 +1,94 @@
+@if (user) {
+  <div class="profile-container">
+
+    <div class="profile-header">
+      <h1 class="profile-title">Profile</h1>
+      <button mat-flat-button
+              color="primary"
+              class="edit-btn"
+              (click)="openEditDialog()">
+        Edit Profile
+      </button>
+    </div>
+
+
+    <div class="profile-content">
+      <div class="profile-avatar-section">
+        <img class="profile-avatar"
+             [src]="userProfileImage || stockPic"
+             alt="Profile image">
+
+
+        <div class="upload-section">
+          <input type="file"
+                 style="display: none"
+                 #fileInput
+                 accept="image/*"
+                 (change)="onFileSelected($event)">
+
+          <div class="upload-buttons">
+            <button mat-stroked-button
+                    color="primary"
+                    class="upload-btn"
+                    (click)="fileInput.click()">
+              <mat-icon>photo_camera</mat-icon>
+              Change Photo
+            </button>
+
+            @if (selectedFile) {
+              <button mat-raised-button
+                      color="accent"
+                      class="upload-submit"
+                      (click)="onUpload()">
+                <mat-icon>cloud_upload</mat-icon>
+                Upload
+              </button>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-info-section">
+        <div class="info-card">
+          <mat-icon class="info-icon">person</mat-icon>
+          <div class="info-content">
+            <div class="info-label">Username</div>
+            <div class="info-value">{{ user?.username }}</div>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <mat-icon class="info-icon">badge</mat-icon>
+          <div class="info-content">
+            <div class="info-label">Full Name</div>
+            <div class="info-value">{{ user?.firstname }} {{ user?.lastname }}</div>
+          </div>
+        </div>
+
+        @if (user?.bio) {
+          <div class="info-card bio-card">
+            <mat-icon class="info-icon">description</mat-icon>
+            <div class="info-content">
+              <div class="info-label">Bio</div>
+              <div class="info-value bio-text">{{ user?.bio }}</div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <mat-divider class="profile-divider"></mat-divider>
+
+    <div class="profile-actions">
+      <button mat-flat-button
+              color="primary"
+              class="add-post-btn"
+              (click)="openAddPostDialog()">
+        <mat-icon>add</mat-icon>
+        Create New Post
+      </button>
+    </div>
+
+    <router-outlet></router-outlet>
+  </div>
+}
