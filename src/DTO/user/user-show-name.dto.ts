@@ -3,5 +3,4 @@ export interface UserShowNameDto{
   username:string;
   firstname:string;
   lastname: string;
-  avatar?: number;
 }

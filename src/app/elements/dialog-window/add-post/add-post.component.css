@@ -1,0 +1,126 @@
+.dialog-container {
+  padding: 24px;
+  min-width: 400px;
+  max-width: 500px;
+}
+
+.dialog-title {
+  margin: 0 0 24px 0;
+  text-align: center;
+  color: #333;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.image-upload-section {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.post-image {
+  width: 100px;
+  height: auto;
+  object-fit: cover;
+  border: 3px solid #f0f0f0;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.post-image:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.upload-controls {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.upload-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-field {
+  width: 100%;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.action-button {
+  min-width: 120px;
+  padding: 8px 24px;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.cancel-button {
+  color: #666;
+}
+
+.cancel-button:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.submit-button {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.submit-button:hover:not([disabled]) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.submit-button[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+  .dialog-container {
+    padding: 16px;
+    min-width: unset;
+  }
+
+  .dialog-actions {
+    flex-direction: column;
+  }
+
+  .action-button {
+    width: 100%;
+  }
+
+  .profile-image {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+.mat-mdc-form-field {
+  --mdc-outlined-text-field-outline-color: #e0e0e0 !important;
+  --mdc-outlined-text-field-hover-outline-color: #bdbdbd !important;
+  --mdc-outlined-text-field-focus-outline-color: #3f51b5 !important;
+}
+
+
+.mat-mdc-form-field.mat-focused {
+  --mdc-outlined-text-field-label-text-color: #3f51b5 !important;
+}
+

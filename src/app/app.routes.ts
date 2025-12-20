@@ -7,6 +7,7 @@ import {IndexComponent} from './layout/index.component/index.component';
 import {AuthGuardService} from '../interceptors/auth-guard.service';
 import {ProfileComponent} from './layout/profile/profile.component';
 import {UserFeedComponent} from './layout/user-feed/user-feed.component';
+import {AddPostComponent} from './elements/dialog-window/add-post/add-post.component';
 
 export const routes :Routes = [
   {path: 'login', component:LoginComponent},
@@ -14,7 +15,7 @@ export const routes :Routes = [
   {path: 'main', component: IndexComponent, canActivate:[AuthGuardService]},
   {path: 'profile', component: ProfileComponent, canActivate:[AuthGuardService], children:[
       {path: '', component: UserFeedComponent, canActivate: [AuthGuardService]},
-  //     {path: 'add', component: AddPostComponent, canActivate: [AuthGuardService]}
+      {path: 'add', component: AddPostComponent, canActivate: [AuthGuardService]}
     ]},
   {path: '', redirectTo: 'main', pathMatch: 'full'}
 ];

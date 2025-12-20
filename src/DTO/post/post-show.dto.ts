@@ -11,6 +11,6 @@ export interface PostShowDto{
   createdDate:Date;
   images:number[];
   likedUsers:number[];
-  img?:any[];
+  img?:string[];
   fullComments?:CommentShowDto[];
 }

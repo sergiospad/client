@@ -30,7 +30,7 @@ export class PostService{
     });
   }
 
-  uploadImage(postId:number, file:File):Observable<number>{
+  uploadImage(postId:number, file:Blob):Observable<number>{
     const uploadData = new FormData();
     uploadData.append('file', file);
     return this.http.post<number>(this.postAPI.build("image", String(postId)), uploadData);

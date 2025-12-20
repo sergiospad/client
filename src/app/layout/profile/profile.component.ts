@@ -8,6 +8,7 @@ import {MatButton} from '@angular/material/button';
 import {MatIcon} from '@angular/material/icon';
 import {MatDivider} from '@angular/material/list';
 import {RouterOutlet} from '@angular/router';
+import {AddPostComponent} from '../../elements/dialog-window/add-post/add-post.component';
 
 @Component({
   selector: 'app-profile',
@@ -24,7 +25,7 @@ export class ProfileComponent implements OnInit{
   readonly stockPic = 'https://play-lh.googleusercontent.com/QTGIa44vlItPa2hs73btKocNVJfK4qEdi8EEiF8GG9JvcGSN1cVZ-gqI_2zDgGN19A=w480-h960';
   user!: UserProfileDto;
   selectedFile?: Blob;
-  userProfileImage?: any;
+  userProfileImage?: string;
 
   private readonly dialog = inject(MatDialog);
   private readonly notificationService = inject(NotificationService);
@@ -83,8 +84,7 @@ export class ProfileComponent implements OnInit{
     dialogAddPostConfig.data = {
       user: this.user
     };
-    //TODO AddPostComponent
-    // this.dialog.open(AddPostComponent, dialogAddPostConfig);
+    this.dialog.open(AddPostComponent, dialogAddPostConfig);
   }
 
 }
