@@ -44,9 +44,8 @@ export class ProfileComponent implements OnInit{
     const input = event.target as HTMLInputElement;
     if (input.files && input.files[0]) {
       this.selectedFile = input.files[0];
-      this.userService.getAvatar().subscribe(data=>
-        this.imageService.convertBlobToDataUrl(data)
-          .then(str =>this.userProfileImage = str ))
+      this.imageService.convertBlobToDataUrl(this.selectedFile)
+        .then(str=>this.userProfileImage = str );
     }
   }
 

@@ -28,7 +28,7 @@ import {ImageUploadService} from '../../service/image-upload.service';
   styleUrl: './navigation.component.css',
 })
 export class NavigationComponent implements OnInit{
-
+  readonly stockPic = 'https://play-lh.googleusercontent.com/QTGIa44vlItPa2hs73btKocNVJfK4qEdi8EEiF8GG9JvcGSN1cVZ-gqI_2zDgGN19A=w480-h960';
   user:UserShowNameDto|undefined;
 
   private readonly userService = inject(UserService)
