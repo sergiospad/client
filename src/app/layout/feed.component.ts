@@ -9,6 +9,8 @@ import {UserService} from '../../service/user.service';
 import {CommentCreateDto} from '../../DTO/comment/comment-create.dto';
 import {ImageUploadService} from '../../service/image-upload.service';
 import {CommentShowDto} from '../../DTO/comment/comment-show.dto';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {EditPostComponent} from '../elements/dialog-window/edit-post/edit-post.component';
 
 @Directive()
 export abstract class FeedComponent implements OnInit{
@@ -16,6 +18,7 @@ export abstract class FeedComponent implements OnInit{
   postsId:number[]|undefined;
   fullPosts: PostShowDto[]|undefined;
   user!:UserShowNameDto;
+  private readonly dialog = inject(MatDialog);
   protected readonly postService = inject(PostService);
   protected readonly userService = inject(UserService);
   protected readonly commentService = inject(CommentService);
@@ -112,5 +115,16 @@ export abstract class FeedComponent implements OnInit{
     this.commentService.deleteComment(comment.id)
       .subscribe(()=> this.notificationService.showSnackBar("Comment deleted."))
   }
+
+  openEditPostDialog(post:PostShowDto){
+    const dialogEditPostConfig = new MatDialogConfig();
+    dialogEditPostConfig.width = "600px";
+    dialogEditPostConfig.data = {
+      post: post
+    };
+    this.dialog.open(EditPostComponent, dialogEditPostConfig);
+  }
+
+
 
 }

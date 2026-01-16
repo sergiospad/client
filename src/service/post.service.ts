@@ -4,6 +4,7 @@ import {EndpointBuilder} from '../util/endpoint-builder';
 import {Observable} from 'rxjs';
 import {PostShowDto} from '../DTO/post/post-show.dto';
 import {PostCreateDto} from '../DTO/post/post-create.dto';
+import {PostEditDto} from '../DTO/post/post-edit.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -42,5 +43,9 @@ export class PostService{
 
   getPostById(postId:number):Observable<PostShowDto>{
     return this.http.get<PostShowDto>(this.postAPI.build(String(postId)));
+  }
+
+  editPost(post:PostEditDto){
+    return this.http.put<PostShowDto>(this.postAPI.build("edit"), post);
   }
 }

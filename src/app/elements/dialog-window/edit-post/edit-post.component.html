@@ -1,0 +1,35 @@
+<div class="dialog-container">
+  <h2 class="dialog-title">Edit Post</h2>
+  <form [formGroup]="editPostForm" class="form-fields">
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title">
+    </mat-form-field>
+
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Caption</mat-label>
+      <input matInput formControlName="caption">
+    </mat-form-field>
+
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Location</mat-label>
+      <input matInput formControlName="location">
+    </mat-form-field>
+
+    <div class="dialog-actions">
+      <button mat-button
+              (click)="closeDialog()"
+              mat-dialog-close
+              class="action-button cancel-button"
+              disableRipple>Cancel
+      </button>
+    </div>
+    <button mat-raised-button
+            color="primary"
+            class="action-button submit-button"
+            [disabled]="editPostForm.invalid"
+            (click)="submit()"
+            disableRipple>Add
+    </button>
+  </form>
+</div>

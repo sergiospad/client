@@ -1,6 +1,6 @@
 <app-carcass [posts]="fullPosts"
              [user]="user"
-             [allowToDelete] = false
+             [allowToEdit] = false
              (postLiked)="likePost($event)"
              (sendComment)="postComment($event.message, $event.post)">
 </app-carcass>

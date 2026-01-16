@@ -4,8 +4,9 @@
       <mat-card class="post-card" appearance="outlined">
 
         <app-post-header [post]="post"
-                          [allowedToDelete] = allowToDelete
-                         (deletePost)="this.deletePost.emit($event);">
+                          [allowedToDelete] = allowToEdit
+                         (deletePost)="this.deletePost.emit($event);"
+                         (editPost)="this.editPostComponent.emit($event)">
         </app-post-header>
 
         <app-slider [images]="post.img"></app-slider>
@@ -21,7 +22,7 @@
         </app-like-button>
 
         <app-comments-section [comments]="post.fullComments"
-                              [allowedToDeleteComment]="allowToDelete"
+                              [allowedToDeleteComment]="allowToEdit"
                               [post]="post"
                               (sendComment)="handleEnterPress($event.message, $event.post)"
                               (deleteComment)=this.deleteComment.emit($event);>

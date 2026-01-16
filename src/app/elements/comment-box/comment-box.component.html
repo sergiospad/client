@@ -10,6 +10,13 @@
 <div class="comment-header-date">
     <div class="comment-header">
       <span class="comment-author">{{ comment.firstname }} {{ comment.lastname }}</span>
+      @if (allowedToEdit){
+        <button mat-icon-button
+                class="delete-comment"
+                (click)="this.deleteComment.emit(comment)">
+          <mat-icon>create</mat-icon>
+        </button>
+      }
       @if (allowedToDelete) {
         <button mat-icon-button
                 class="delete-comment"
@@ -20,9 +27,10 @@
     </div>
     <span class="comment-date">{{ comment.creationDate | dateFormat }}</span>
   </div>
-    <div class="comment-body">
-      {{ comment.message }}
-    </div>
+
+      <div class="comment-body">
+        {{ comment.message }}
+      </div>
 
   </div>
 </div>

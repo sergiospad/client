@@ -5,6 +5,7 @@
         <app-comment-box [comment]="comment"
                          [allowedToDelete] = "allowedToDeleteComment"
                          (deleteComment)="this.deleteComment.emit($event)">
+<!--                         [allowedToEdit] = "currentUser.id == comment.commentatorId"-->
         </app-comment-box>
       }
     </div>

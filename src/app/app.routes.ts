@@ -9,6 +9,7 @@ import {ProfileComponent} from './layout/profile/profile.component';
 import {UserFeedComponent} from './layout/user-feed/user-feed.component';
 import {AddPostComponent} from './elements/dialog-window/add-post/add-post.component';
 import {EditProfileComponent} from './elements/dialog-window/edit-profile/edit-profile.component';
+import {EditPostComponent} from './elements/dialog-window/edit-post/edit-post.component';
 
 export const routes :Routes = [
   {path: 'login', component:LoginComponent},
@@ -17,7 +18,8 @@ export const routes :Routes = [
   {path: 'profile', component: ProfileComponent, canActivate:[AuthGuardService], children:[
       {path: '', component: UserFeedComponent, canActivate: [AuthGuardService]},
       {path: 'add', component: AddPostComponent, canActivate: [AuthGuardService]},
-      {path: 'edit', component: EditProfileComponent, canActivate: [AuthGuardService]}
+      {path: 'edit', component: EditProfileComponent, canActivate: [AuthGuardService]},
+      {path: "editPost", component:EditPostComponent, canActivate: [AuthGuardService]}
     ]},
   {path: '', redirectTo: 'main', pathMatch: 'full'}
 ];

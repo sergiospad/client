@@ -5,6 +5,12 @@
       <div class="post-actions-btn">
         <button mat-icon-button
                 class="delete-btn"
+                (click)="this.editPost.emit(post);"
+                matTooltip="Edit post">
+          <mat-icon>create</mat-icon>
+        </button>
+        <button mat-icon-button
+                class="delete-btn"
                 (click)="this.deletePost.emit(post.id);"
                 matTooltip="Delete post">
           <mat-icon>clear</mat-icon>

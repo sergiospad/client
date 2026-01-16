@@ -1,8 +1,10 @@
 <app-carcass [posts]="fullPosts"
              [user]="user"
-             [allowToDelete] = true
+             [allowToEdit] = true
              (postLiked)="likePost($event)"
              (deletePost)="deletePost($event)"
              (sendComment)="postComment($event.message, $event.post)"
-             (deleteComment)="deleteComment($event)">
+             (deleteComment)="deleteComment($event)"
+             (editPostComponent)="openEditPostDialog($event)"
+>
 </app-carcass>

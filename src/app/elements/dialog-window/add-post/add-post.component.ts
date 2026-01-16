@@ -68,7 +68,6 @@ export class AddPostComponent implements OnInit{
               }
             })
           }
-
           this.notificationService.showSnackBar("Post created.")
         }
       })

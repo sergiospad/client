@@ -26,13 +26,14 @@ import {CommentShowDto} from '../../../DTO/comment/comment-show.dto';
 export class CarcassComponent {
   @Input() posts:PostShowDto[]|undefined;
   @Input() user:UserShowNameDto|undefined
-  @Input() allowToDelete!:boolean;
+  @Input() allowToEdit!:boolean;
 
   @Output() postLiked = new EventEmitter<PostShowDto>;
   @Output() deletePost = new EventEmitter<number>;
   @Output() deleteComment = new EventEmitter<CommentShowDto>;
 
   @Output() sendComment = new EventEmitter<{ message:string, post:PostShowDto }>
+  @Output() editPostComponent = new EventEmitter<PostShowDto>();
 
   handleEnterPress(message:string, post:PostShowDto){
     this.sendComment.emit({message, post});

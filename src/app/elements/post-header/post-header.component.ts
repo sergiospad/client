@@ -25,6 +25,7 @@ export class PostHeaderComponent {
   @Input() post!:PostShowDto;
   @Input() allowedToDelete = false;
   @Output() deletePost = new EventEmitter<number>();
+  @Output() editPost = new EventEmitter<PostShowDto>();
 
   readonly imageUploadService = inject(ImageUploadService);
 

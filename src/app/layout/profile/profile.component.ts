@@ -10,6 +10,7 @@ import {MatDivider} from '@angular/material/list';
 import {RouterOutlet} from '@angular/router';
 import {AddPostComponent} from '../../elements/dialog-window/add-post/add-post.component';
 import {EditProfileComponent} from '../../elements/dialog-window/edit-profile/edit-profile.component';
+import {PostShowDto} from '../../../DTO/post/post-show.dto';
 
 @Component({
   selector: 'app-profile',
